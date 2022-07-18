@@ -23,7 +23,6 @@ export default {
             fetch('https://bigcountry-task.vercel.app/comments.json')
             .then((response) => response.json())
             .then(data => {
-                console.log(data);
                 this.data = data;
                 });
         }

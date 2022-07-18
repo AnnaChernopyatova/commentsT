@@ -4,7 +4,7 @@
         <h3>{{ comment.author.name }}</h3>
         <span>{{ comment.author.company }}</span>
         <div class="date">
-            {{ comment.created_at }}
+            {{ date }}
         </div>
         <p>
             {{ comment.body }}
@@ -13,12 +13,16 @@
 </template>
 
 <script>
+import { format } from 'date-fns'
+
 export default {
     name: 'Comment',
     props: ['comment'],
 
-    mounted () {
-        console.log(this.$props)
+    computed: {
+        date() {
+            return format(new Date(this.comment.created_at), "dd MMMM yyyy', at' HH:mm")
+        }
     }
 }
 </script>
@@ -29,7 +33,7 @@ export default {
     padding: 15px;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 65px 1fr 14%;
+    grid-template-columns: 65px 1fr 12%;
     grid-template-rows: 1fr 2fr;
     align-items: start;
     width: 70vw;
@@ -51,8 +55,15 @@ export default {
     }
 
     span {
-        margin-top: 3.7%;
+        margin-top: 3vh;
         grid-area: 1 / 2 / 2 / 3;
+        color: gray;
+        font-size: 0.8em;
+        font-weight: bold;
+    }
+
+    .date {
+        margin-top: 1.2vh;
         color: gray;
         font-size: 0.8em;
         font-weight: bold;
