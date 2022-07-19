@@ -2,10 +2,8 @@
 <div>
     <Comment v-for="comment in paginatedData" :key = "comment.id" :comment = "comment"/>
     <div class="pagination">
-        <button :click = previousPage() :disabled = "current===0">Previous</button>
-        <a href="">{{ current }}</a>
-        <a href="">{{ amountOfPages }}</a>
-        <button :click = nextPage() :disabled = "current >= amountOfPages - 1">Next</button>
+        <button v-on:click = "previousPage()" :disabled = "current===0">Previous</button>
+        <button v-on:click = "nextPage()" :disabled = "current >= amountOfPages - 1">Next</button>
     </div>
 </div>
 </template>
@@ -18,20 +16,22 @@ export default {
     components: {
         Comment
     },
+    
+
     data() {
         return{
-            data: [],
             current: 1,
             size: 20,
+            usersData: [],
         }
     },
 
-    mounted () {
+    mounted() {
         try{
             fetch('https://bigcountry-task.vercel.app/comments.json')
             .then((response) => response.json())
             .then(data => {
-                this.data = data;
+                this.usersData = JSON.parse(JSON.stringify(data));
                 });
         }
         catch (e) {
@@ -41,23 +41,31 @@ export default {
 
     methods: {
         nextPage() {
-            this.current += 1;
+            if (this.current < this.size) {
+                this.current += 1;
+            }
         },
         previousPage() {
-            this.current -= 1;
+            if (this.current > 1) {
+                this.current -= 1;
+            }
         }
     },
 
     computed: {
         amountOfPages() {
-            return Math.ceil(this.data.length/this.size);
+            if (Array.isArray(this.usersData)) {
+                return Math.ceil(this.usersData.length/this.size);
+            } else return 1;
         },
      
         paginatedData() {
             const start = this.current * this.size;
             const end = start + this.size;
-            return this.data.slice(start, end);
-}
+            if (Array.isArray(this.usersData)) {
+                return this.usersData.slice(start, end);
+            } else return this.usersData;
+        }
     }
     
     /*
