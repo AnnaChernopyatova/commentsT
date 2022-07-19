@@ -10,13 +10,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 div {
     padding-top: 3vh;
     box-sizing: border-box;
     height: 13vh;
     background-color: darkslategrey;
     color: #fff;
+
+    @media screen and (max-height: 1400px) {
+        height: 11vh;
+    }
 }
 
 h1 {
