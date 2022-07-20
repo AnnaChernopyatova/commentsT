@@ -140,21 +140,69 @@ textarea {
     &:focus {
         border: 5px solid rgba(12, 56, 43, 0.664);
     }
+
+    @media screen and (min-width: 801px) and (max-width: 1300px) {
+        width: 75vw;
+    }
+
+    @media screen and (min-width: 551px) and (max-width: 800px) {
+        width: 85vw;
+    }
+
+    @media screen and (max-width: 550px) {
+        width: 90vw;
+    }
+
+    @media screen and (max-width: 500px) {
+        font-size: 0.95em;
+    }
+
+    @media screen and (max-width: 400px) {
+        margin-top: 4%;
+    }
+
+    @media screen and (max-width: 300px) {
+        font-size: 0.7em;
+    }
 }
 
 .comment {
     display: flex;
     flex-direction: row;
     justify-content: start;
-    width: 55vw;
+    width: 57vw;
     height: 6vh;
     background-color: transparent;
+
+    @media screen and (min-width: 801px) and (max-width: 1300px) {
+        width: 75vw;
+    }
+
+    @media screen and (min-width: 551px) and (max-width: 800px) {
+        width: 85vw;
+    }
+
+    @media screen and (max-width: 550px) {
+        width: 90vw;
+    }
 }
 
 p {
     margin-left: 8%;
     color: red;
     font-size: 1.1em;
+
+    @media screen and (max-width: 500px) {
+        font-size: 0.95em;
+    }
+
+    @media screen and (max-width: 400px) {
+        margin-top: 4%;
+    }
+
+    @media screen and (max-width: 300px) {
+        font-size: 0.7em;
+    }
 }
 .pagination {
     margin-bottom: 2vh;
@@ -165,11 +213,7 @@ p {
     justify-content: space-between;
     background-color:rgba(168, 168, 168, 0);
 
-    @media screen and (max-width:550px) {
-        width: 55vw;    
-    }
-
-    @media screen and (min-width: 551px) and (max-width: 950px) {
+    @media screen and (max-width: 1050px) {
         width: 55vw;
     }
 }
@@ -178,6 +222,7 @@ button {
     height: 5vh;
     border: none;
     border-radius: 10px;
+    font-size: 1.1em;
     background-color: darkslategrey;
     color: white;
     
@@ -198,16 +243,25 @@ button {
         }
     }
 
-    @media screen and (max-width:550px) {
+    @media screen and (max-width:700px) {
         width: 20vw;    
     }
 
-    @media screen and (min-width: 551px) and (max-width: 950px) {
-        width: 17vw;
+    @media screen and (min-width: 701px) and (max-width: 1050px) {
+        width: 14vw;
     }
 
-     @media screen and (max-height: 1400px) and (min-height: 700px) {
-        font-size: 1.5em;
+    @media screen and (max-width: 900px) and (min-width: 401px) {
+        font-size: 1em;
+    }
+
+    @media screen and (max-width: 400px) {
+        font-size: 0.9em;
+        width: 23vw;
+    }
+
+    @media screen and (max-height: 700px) {
+        height: 6vh;
     }
 }
 

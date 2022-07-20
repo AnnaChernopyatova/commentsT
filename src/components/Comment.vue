@@ -33,57 +33,83 @@ export default {
     padding: 15px;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 55px 1fr 12%;
+    grid-template-columns: 55px 1fr 15%;
     grid-template-rows: 35% 1fr;
-    width: 70vw;
+    width: 60vw;
     height: fit-content;
     background-color: #fff;
     border-radius: 15px;
 
     @media screen and (max-height: 1000px) {
-        height: 25vh;
         padding: 10px;
-    }
-
-    @media screen and (max-width: 550px) {
-        padding: 10px;
-        width: 85vw;
-        grid-template-columns: 60px 1fr 30%;
-        grid-template-rows: 20% 1fr;
-    }
-
-    @media screen and (min-width: 551px) and (max-width: 900px) {
-        grid-template-columns: 60px 1fr 45%;
     }
 
     @media screen and (max-height: 1400px) and (min-height: 1000px) {
-        grid-template-columns: 55px 1fr 30%;
         grid-template-rows: 25% 1fr;
     }
 
+    @media screen and (min-width: 801px) and (max-width: 1300px) {
+        padding: 10px;
+        width: 75vw;
+        grid-template-columns: 60px 1fr 18%;
+        grid-template-rows: 20% 1fr;
+    }
+
+    @media screen and (min-width: 801px) and (max-width: 1000px) {
+        grid-template-columns: 60px 1fr 23%;
+    }
+
+    @media screen and (min-width: 551px) and (max-width: 800px) {
+        width: 85vw;
+        grid-template-columns: 50px 1fr 25%;
+    }
+
+    @media screen and (max-width: 550px) {
+        width: 90vw;
+        grid-template-columns: 50px 1fr 30%;
+        grid-template-rows: 15% 1fr;
+    }
+
     img {
+        margin-top: 10px;
+        object-fit: cover;
         height: 50px;
         width: 50px;
         border-radius: 100% 100% 100% 100%;
 
-        @media screen  and (max-height: 700px) and (max-width: 550px) {
-        height: 35px;
-        width: 35px;
+        @media screen and (min-width: 1051px) and (max-width: 1300px) {
+            height: 45px;
+            width: 45px;
         }
+
+         @media screen and (max-width: 1050px) {
+            margin-top: 3px;
+            height: 40px;
+            width: 40px;
+        }
+
+        @media screen and (max-width: 400px) {
+            height: 35px;
+            width: 35px;
+        }
+
+       
     }
 
     h3 {
         grid-area: 1 / 2 / 2 / 3;
-        position: relative;
-        top: -20%;
-        margin: 0%;
+        margin-top: 1%;
         font-size: 1.1em;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
 
-        @media screen and (max-height: 1400px) and (min-height: 700px) {
-        font-size: 1.4em;
+        @media screen and (max-width: 900px) and (min-width: 401px) {
+        font-size: 1em;
+        }
+
+        @media screen and (max-width: 400px) {
+            font-size: 0.9em;
         }
     }
 
@@ -94,9 +120,18 @@ export default {
         font-size: 0.8em;
         font-weight: bold;
 
-        @media screen and (max-height: 1400px) and (min-height: 700px) {
-            margin-top: 2.5vh;
-            font-size: 1em;
+        @media screen and (max-width: 900px) and (min-width: 801px) {
+            font-size: 0.73em;
+            margin-top: 3vh;
+        }
+
+        @media screen and (max-width: 800px) {
+            font-size: 0.73em;
+            margin-top: 3vh;
+        }
+
+        @media screen and (max-width: 300px) {
+            font-size: 0.6em;
         }
     }
 
@@ -106,34 +141,30 @@ export default {
         font-size: 0.8em;
         font-weight: bold;
 
-        @media screen and (max-width:550px) {
-            margin: 0;
-        }
-
-        @media screen and (max-height: 1400px) and (min-height: 700px) {
-            font-size: 1em;
+        @media screen and (max-width: 1100px) {
             margin: 0%;
+            font-size: 0.73em;
+        }
+        @media screen and (max-width: 300px) {
+            font-size: 0.6em;
         }
     }
-
     p {
-        margin-top: 1%;
+        margin: 0%;
+        margin-top: 1.5%;
         grid-area: 2 / 1 / 3 / 4;
+        
 
-        @media screen and (max-width:550px) {
-            margin-top: 5%;
+        @media screen and (max-width: 500px) {
+            font-size: 0.95em;
         }
 
-        @media screen and (max-height: 700px) {
-            font-size: 0.8em;
+        @media screen and (max-width: 400px) {
+            margin-top: 4%;
         }
 
-        @media screen and (max-height: 1101px) and (min-height: 701px) {
-            font-size: 1.2em;
-        }
-
-        @media screen and (max-height: 1400px) and (min-height: 1100px) {
-            font-size: 1.4em;
+        @media screen and (max-width: 300px) {
+            font-size: 0.7em;
         }
     }
 }
