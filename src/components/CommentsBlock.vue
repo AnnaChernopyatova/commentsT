@@ -15,7 +15,6 @@
 
 <script>
 import Comment from './Comment.vue'
-import { onMounted } from 'vue';
 
 export default {
     name: 'CommentsBlock',
@@ -44,6 +43,12 @@ export default {
         }
         catch (e) {
             throw new Error(e.message)
+        }
+
+console.log(this.$route.query)
+       
+        if ("page" in window.location) {
+            this.current = window.location.href.match(/http\:\/\/localhost:8080\/page\?=([\w-]{11})/);
         }
     },
 
@@ -76,7 +81,7 @@ export default {
             } else {
                 this.showWarning = true;
             }
-        }
+        },
     },
 
     computed: {
@@ -92,6 +97,14 @@ export default {
             if (Array.isArray(this.usersData)) {
                 return this.usersData.slice(start, end);
             } else return this.usersData;
+        }
+    },
+
+    watch: {
+        current() {
+            if (window.location.href.match(/http\:\/\/localhost:8080\/page\?=(0|[1-9][0-9]*)/)) {
+                window.history.pushState = window.location.href.replace(/http\:\/\/localhost:8080\/page\?=([\w-]{11})/, this.current);
+            } else window.history.pushState = window.location.href + `\page?=${this.current}`;
         }
     }
     
