@@ -15,6 +15,7 @@
 
 <script>
 import Comment from './Comment.vue'
+import router from '../router';
 
 export default {
     name: 'CommentsBlock',
@@ -45,10 +46,11 @@ export default {
             throw new Error(e.message)
         }
 
-console.log(this.$route.query)
+        console.log(router.currentRoute.query.page)
        
-        if ("page" in window.location) {
-            this.current = window.location.href.match(/http\:\/\/localhost:8080\/page\?=([\w-]{11})/);
+        if ("page" in router.currentRoute.query) {
+            console.log('im in mounted')
+            this.current = Number(router.currentRoute.query.page);
         }
     },
 
@@ -102,31 +104,10 @@ console.log(this.$route.query)
 
     watch: {
         current() {
-            if (window.location.href.match(/http\:\/\/localhost:8080\/page\?=(0|[1-9][0-9]*)/)) {
-                window.history.pushState = window.location.href.replace(/http\:\/\/localhost:8080\/page\?=([\w-]{11})/, this.current);
-            } else window.history.pushState = window.location.href + `\page?=${this.current}`;
+            router.currentRoute.query.page = this.current;
+            console.log(router.currentRoute.query.page)
         }
     }
-    
-    /*
-       backwardTwo() {
-            return this.current-2;
-        },
-        backwardOne() {
-            return this.current-1;
-        },
-        forwardOne() {
-            return this.current+1;
-        },
-        forwardTwo() {
-            return this.current+2;
-        },
-        
-         <a href="">{{ backwardTwo }}</a>
-        <a href="">{{ backwardOne }}</a>
-        
-        <a href="">{{ forwardOne }}</a>
-        <a href="">{{ forwardTwo }}</a>*/
 }
 </script>
 
