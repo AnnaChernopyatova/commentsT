@@ -1,12 +1,13 @@
 <template>
     <div>
-        <h1>Comments</h1>
+        <h1 v-if="header">Comments</h1>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Header'
+    name: 'Header',
+    props: ['header']
 }
 </script>
 

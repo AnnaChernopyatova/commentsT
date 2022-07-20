@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <Header />
+    <Header header = true />
     <CommentsBlock />
+    <Header header = '' />
   </div>
 </template>
 
