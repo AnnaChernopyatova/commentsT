@@ -45,11 +45,8 @@ export default {
         catch (e) {
             throw new Error(e.message)
         }
-
-        console.log(router.currentRoute.query.page)
        
         if ("page" in router.currentRoute.query) {
-            console.log('im in mounted')
             this.current = Number(router.currentRoute.query.page);
         }
     },
@@ -66,7 +63,6 @@ export default {
             }
         },
         addComment() {
-            console.log(RegExp(/^(\b\S+\b\s?){3,}$/).test(this.comment))
             if (RegExp(/^(\b\S+\b\s?){3,}$/).test(this.comment) && this.comment.length <= 1000) {
                 this.usersData.push({
                     "id": this.usersData.length,
@@ -105,7 +101,6 @@ export default {
     watch: {
         current() {
             router.currentRoute.query.page = this.current;
-            console.log(router.currentRoute.query.page)
         }
     }
 }
@@ -132,7 +127,11 @@ textarea {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
     &:focus {
-        border: 5px solid rgba(12, 56, 43, 0.664);
+        border: 5px solid rgba(12, 56, 43, 0.5);
+    }
+
+    &:active {
+        border: 5px solid rgba(12, 56, 43, 0.5);
     }
 
     @media screen and (min-width: 801px) and (max-width: 1300px) {
