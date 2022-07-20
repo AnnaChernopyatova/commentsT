@@ -1,5 +1,10 @@
 <template>
 <div>
+    <textarea placeholder="Here you can write a new comment..." v-model="comment"></textarea>
+    <div class="comment">
+        <button v-on:click = "addComment()" class="submit">Submit</button>
+        <p v-if="showWarning">Text must be minimum 3 words and maximum 1000 symbols</p>
+    </div>
     <Comment v-for="comment in paginatedData" :key = "comment.id" :comment = "comment"/>
     <div class="pagination">
         <button v-on:click = "previousPage()" :disabled = "current===0">Previous</button>
@@ -10,6 +15,7 @@
 
 <script>
 import Comment from './Comment.vue'
+import { onMounted } from 'vue';
 
 export default {
     name: 'CommentsBlock',
@@ -23,6 +29,8 @@ export default {
             current: 1,
             size: 20,
             usersData: [],
+            comment: '',
+            showWarning: false
         }
     },
 
@@ -48,6 +56,25 @@ export default {
         previousPage() {
             if (this.current > 1) {
                 this.current -= 1;
+            }
+        },
+        addComment() {
+            console.log(RegExp(/^(\b\S+\b\s?){3,}$/).test(this.comment))
+            if (RegExp(/^(\b\S+\b\s?){3,}$/).test(this.comment) && this.comment.length <= 1000) {
+                this.usersData.push({
+                    "id": this.usersData.length,
+                    "body": this.comment,
+                    "created_at": new Date(),
+                    "author": {
+                        "id": 16,
+                        "name": "John Doe",
+                        "avatar": "http://placeimg.com/640/480/business",
+                        "company": "BigCountry"
+                    }
+                });
+                this.comment = '';
+            } else {
+                this.showWarning = true;
             }
         }
     },
@@ -98,6 +125,37 @@ div {
     align-content: space-around;
     background-color:rgba(168, 168, 168, 0.658);
 }
+
+textarea {
+    margin-top: 1.5%;
+    padding: 5px;
+    width: 60vw;
+    height: 14vh;
+    border: 5px solid rgba(12, 56, 43, 0.5);
+    border-radius: 20px;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    &:focus {
+        border: 5px solid rgba(12, 56, 43, 0.664);
+    }
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 55vw;
+    height: 6vh;
+    background-color: transparent;
+}
+
+p {
+    margin-left: 8%;
+    color: red;
+    font-size: 1.1em;
+}
 .pagination {
     margin-bottom: 2vh;
     height: 5vh;
@@ -117,9 +175,11 @@ div {
 }
 button {
     width: 6vw;
-    height: 4vh;
+    height: 5vh;
     border: none;
     border-radius: 10px;
+    background-color: darkslategrey;
+    color: white;
     
 
     &:hover {
@@ -149,5 +209,9 @@ button {
      @media screen and (max-height: 1400px) and (min-height: 700px) {
         font-size: 1.5em;
     }
+}
+
+.submit {
+    margin-top: 2vh;
 }
 </style>
